@@ -18,8 +18,9 @@ namespace MohawkGame2D
                 new Vector2 (350, 350),
                 new Vector2 (75, 325),
                 new Vector2 (275, 40),
+                new Vector2 (225, 375),
             ];
-
+        int[] radii;
 
         /// <summary>
         ///     Setup runs once before the game loop begins.
@@ -28,6 +29,11 @@ namespace MohawkGame2D
         {
             Window.SetTitle("Motion Demo");
             Window.SetSize(400, 400);
+            radii = new int[positions.Length];
+            for (int i = 0; i < radii.Length; i++)
+            {
+                radii[i] = Random.Integer(10, 50);
+            }
         }
 
         /// <summary>
@@ -40,11 +46,15 @@ namespace MohawkGame2D
             for (int i = 0; i < positions.Length; i += 1)
             {
                 Vector2 position = positions[i];
-                DrawEyeball(position, 50, 35, 18);
+                int radius = radii[i];
+                float corneaR = radius;
+                float irisR = radius * 0.7f;
+                float pupilR = radius * 0.35f;
+                DrawEyeball(position, corneaR, irisR, pupilR);
             }
         }
 
-        void DrawEyeball(Vector2 eyePosition, int corneaR, int irisR, int pupilR)
+        void DrawEyeball(Vector2 eyePosition, float corneaR, float irisR, float pupilR)
         {
             //get both X and Y coordinates as a vector
             Vector2 mousePosition = Input.GetMousePosition();
