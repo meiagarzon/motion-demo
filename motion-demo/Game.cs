@@ -11,6 +11,14 @@ namespace MohawkGame2D
     public class Game
     {
         // Place your variables here:
+        Vector2[] positions = 
+            [
+                new Vector2(200, 200),
+                new Vector2 (50, 50),
+                new Vector2 (350, 350),
+                new Vector2 (75, 325),
+                new Vector2 (275, 40),
+            ];
 
 
         /// <summary>
@@ -28,9 +36,13 @@ namespace MohawkGame2D
         public void Update()
         {
             Window.ClearBackground(Color.OffWhite);
-            Vector2 position = new Vector2 (200, 200);
-            DrawEyeball(position, 50, 35, 18);
 
+            for (int i = 0; i < positions.Length; i += 1)
+            {
+                Vector2 position = positions[i];
+                DrawEyeball(position, 50, 35, 18);
+            }
+        }
 
         void DrawEyeball(Vector2 eyePosition, int corneaR, int irisR, int pupilR)
         {
